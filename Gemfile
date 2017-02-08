@@ -43,3 +43,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rest-client'
 
 gem 'active_model_serializers', '~> 0.10.0'
+
+gem 'wicked_pdf'
+
+gem 'carrierwave', '~> 1.0'
+
+gem 'haml-rails'

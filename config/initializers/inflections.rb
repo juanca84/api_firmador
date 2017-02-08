@@ -6,6 +6,7 @@
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'persona', 'personas'
   inflect.irregular 'empresa', 'empresas'
+  inflect.irregular 'documentos', 'documentos'
 end
 
 # These inflection rules are supported but not enabled by default:

@@ -1,6 +1,6 @@
 module Api
   module V1
-    class PersonasController < ApplicationController
+    class PersonasController < ApiController
       def index
         persona = Persona.fetch(params[:doc], params[:fna])
         if persona.present?

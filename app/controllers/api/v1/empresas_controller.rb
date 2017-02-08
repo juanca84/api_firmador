@@ -1,6 +1,6 @@
 module Api
   module V1
-    class EmpresasController < ApplicationController
+    class EmpresasController < ApiController
       def index
         empresa = Empresa.fetch(params[:nit])
         if empresa.present?
