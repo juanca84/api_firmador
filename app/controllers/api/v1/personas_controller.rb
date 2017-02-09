@@ -4,7 +4,7 @@ module Api
       def index
         persona = Persona.fetch(params[:doc], params[:fna])
         if persona.present?
-          render json: ActiveModelSerializers::PersonaSerializer.new(persona)
+          render json: PersonaSerializer.new(persona)
         else
           render json: {}
         end

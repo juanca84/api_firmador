@@ -4,7 +4,7 @@ class CreateDocumentos < ActiveRecord::Migration[5.0]
       t.string :identificador
       t.string :fecha_nacimiento
       t.string :data
-      t.string :pdf
+      t.text :pdf
 
       t.timestamps
     end

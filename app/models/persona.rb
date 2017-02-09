@@ -1,14 +1,17 @@
 class Persona
   include ActiveModel::Model
-  attr_accessor :documento, :nombres, :apellido_primero, :apellido_segundo,
-                :fecha_nacimiento
+  include ActiveModel::Validations::Callbacks
 
-  def initialize(documento, nombres, apellido_primero, apellido_segundo, fecha_nacimiento)
+  attr_accessor :documento, :nombres, :apellido_primero, :apellido_segundo,
+                :fecha_nacimiento, :pdf
+
+  def initialize(documento, nombres, apellido_primero, apellido_segundo, fecha_nacimiento, pdf)
     @documento = documento
     @nombres = nombres
     @apellido_primero = apellido_primero
     @apellido_segundo = apellido_segundo
     @fecha_nacimiento = fecha_nacimiento
+    @pdf = pdf
   end
 
   def self.fetch(documento, fecha_nacimiento)
@@ -27,8 +30,9 @@ class Persona
     parseador = JSON.parse(respuesta)['ConsultaDatoPersonaEnJsonResult']['DatosPersonaEnFormatoJson']
     return nil unless parseador.present?
     parseador = JSON.parse(parseador)
+    doc = Documento.crear(parseador)
     new(parseador['NumeroDocumento'], parseador['Nombres'],
         parseador['PrimerApellido'], parseador['SegundoApellido'],
-        parseador['FechaNacimiento'])
+        parseador['FechaNacimiento'], doc.pdf)
   end
 end

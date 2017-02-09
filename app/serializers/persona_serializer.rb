@@ -1,6 +1,6 @@
 class PersonaSerializer < ActiveModel::Serializer
   attributes :documento, :nombres, :apellido_primero, :apellido_segundo,
-             :fecha_nacimiento
+             :fecha_nacimiento, :pdf
   def documento
     object.documento
   end
@@ -19,5 +19,9 @@ class PersonaSerializer < ActiveModel::Serializer
 
   def fecha_nacimiento
     object.fecha_nacimiento
+  end
+
+  def pdf
+    object.pdf
   end
 end

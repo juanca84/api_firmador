@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170208221449) do
     t.string   "identificador"
     t.string   "fecha_nacimiento"
     t.string   "data"
-    t.string   "pdf"
+    t.text     "pdf"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end

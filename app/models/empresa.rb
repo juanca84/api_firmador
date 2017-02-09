@@ -1,10 +1,11 @@
 class Empresa
   include ActiveModel::Model
-  attr_accessor :nit, :razon_social
+  attr_accessor :nit, :razon_social, :pdf
 
-  def initialize(nit, razon_social)
+  def initialize(nit, razon_social, pdf)
     @nit = nit
     @razon_social = razon_social
+    @pdf = pdf
   end
 
   def self.fetch(nit_razon_social)
@@ -31,7 +32,8 @@ class Empresa
         JSON.parse(respuesta)['SrvMatriculaConsultaRazonResult']['busquedaRazonSocial'][0]
       end
     return nil unless parseador.present?
-    new(parseador['Nit'], parseador['RazonSocial'])
+    doc = Documento.crear(parseador)
+    new(parseador['Nit'], parseador['RazonSocial'], doc.pdf)
   rescue
     nil
   end

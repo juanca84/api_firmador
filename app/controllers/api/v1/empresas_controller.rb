@@ -4,7 +4,7 @@ module Api
       def index
         empresa = Empresa.fetch(params[:nit])
         if empresa.present?
-          render json: empresa.to_json
+          render json: EmpresaSerializer.new(empresa)
         else
           render json: {}
         end
