@@ -14,15 +14,14 @@ Parámetros de entrada y salida:
 | Campo          | Tipo         | Descripción                                                                                                                          |
 |----------------|--------------|--------------------------------------------------------------------------------------------------------------------------------------|
 | doc            | Integer      | Número de documento de la persona. Dato obligatorio.                                                                                 |
-|----------------|--------------|--------------------------------------------------------------------------------------------------------------------------------------|
-| fna            | Date         | Fecha de nacimiento de la persona. Dato obligatorio.                                                                                 |
+| fna            | Date         | Fecha de nacimiento de la persona. Dato obligatorio.
 
 
 
 Ejemplo de consumo:
 
 ```sh
-curl -X GET http://localhost:3000/api/personas\?doc\=12659588\&fna\=19/01/2014
+curl -X GET http://localhost:3000/api/personas?doc=12659588&fna=19/01/2014
 
 Servicio que obtiene los datos de una determinada persona usando su número de documento y su fecha de nacimiento.
 ```
@@ -111,7 +110,6 @@ Parámetros de entrada y salida:
 | Campo          | Tipo         | Descripción                                                                                                                          |
 |----------------|--------------|--------------------------------------------------------------------------------------------------------------------------------------|
 | :id            | Integer      | Identificador de documento que será actualizado. Dato obligatorio.                                                                   |
-|----------------|--------------|--------------------------------------------------------------------------------------------------------------------------------------|
 | pdf            | String       | Nuevo archivo PDF en base 64 que será actualizado. Dato obligatorio.                                                                                  |
 
 
