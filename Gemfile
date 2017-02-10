@@ -53,3 +53,5 @@ gem 'carrierwave', '~> 1.0'
 gem 'haml-rails'
 
 gem 'rqrcode'
+
+gem 'rack-cors', :require => 'rack/cors'

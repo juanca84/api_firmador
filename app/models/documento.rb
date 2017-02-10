@@ -2,7 +2,6 @@ class Documento < ApplicationRecord
 
   def self.obtiene_propietario_token
     #inicia session
-    debugger
     url = Rails.application.secrets.urlFirmadorWS + '/start?pin=' + Rails.application.secrets.pinFirmador
     RestClient::Request.execute(url: url, method: :get, verify_ssl: false)
     #obtiene datos token
