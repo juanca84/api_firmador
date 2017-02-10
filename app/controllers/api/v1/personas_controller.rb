@@ -6,7 +6,7 @@ module Api
         if persona.present?
           render json: PersonaSerializer.new(persona)
         else
-          render json: {}
+          render json: { mensaje: 'No se encontraron datos.' }
         end
       end
     end

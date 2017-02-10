@@ -6,7 +6,7 @@ module Api
         if empresa.present?
           render json: EmpresaSerializer.new(empresa)
         else
-          render json: {}
+          render json: { mensaje: 'No se encontraron datos.' }
         end
       end
     end

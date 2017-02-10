@@ -1,5 +1,22 @@
 class Documento < ApplicationRecord
 
+  def self.obtiene_propietario_token
+    #inicia session
+    debugger
+    url = Rails.application.secrets.urlFirmadorWS + '/start?pin=' + Rails.application.secrets.pinFirmador
+    RestClient::Request.execute(url: url, method: :get, verify_ssl: false)
+    #obtiene datos token
+    url = Rails.application.secrets.urlFirmadorWS + '/certs'
+    respuesta = RestClient::Request.execute(url: url, method: :get, verify_ssl: false)
+    #cerrar session
+    url = Rails.application.secrets.urlFirmadorWS + '/finish'
+    RestClient::Request.execute(url: url, method: :get, verify_ssl: false)
+    respuesta = JSON.parse(respuesta.body)
+    respuesta['datos'][0]
+  rescue
+    { 'error' => 'Se ha producido un error al recuperar los datos' }
+  end
+
   def self.crear(params)
     if params['NumeroDocumento'].present?
       doc = Documento.create!(identificador: params['NumeroDocumento'],
@@ -21,15 +38,16 @@ class Documento < ApplicationRecord
   def generar_pdf(params)
     ac = ActionController::Base.new()
     qr = generar_qr
+    propietario = Documento.obtiene_propietario_token
     # Make a PDF in memory
     pdf_file = ac.render_to_string(
       pdf: 'certificado.pdf',
       layout: 'pdf.html',
       template: 'documentos/show.html.haml',
       disposition: 'attachment',
-      orientation: 'portrait',
+      orientation: 'landscape',
       page_size: 'Letter',
-      locals: { documento: params, qr: qr },
+      locals: { documento: params, qr: qr, propietario: propietario },
       margin: {
         top: 20,
         bottom: 10,

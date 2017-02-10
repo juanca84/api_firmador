@@ -3,15 +3,16 @@ class Persona
   include ActiveModel::Validations::Callbacks
 
   attr_accessor :documento, :nombres, :apellido_primero, :apellido_segundo,
-                :fecha_nacimiento, :pdf
+                :fecha_nacimiento, :pdf, :id_doc
 
-  def initialize(documento, nombres, apellido_primero, apellido_segundo, fecha_nacimiento, pdf)
+  def initialize(documento, nombres, apellido_primero, apellido_segundo, fecha_nacimiento, pdf, id_doc)
     @documento = documento
     @nombres = nombres
     @apellido_primero = apellido_primero
     @apellido_segundo = apellido_segundo
     @fecha_nacimiento = fecha_nacimiento
     @pdf = pdf
+    @id_doc = id_doc
   end
 
   def self.fetch(documento, fecha_nacimiento)
@@ -33,6 +34,6 @@ class Persona
     doc = Documento.crear(parseador)
     new(parseador['NumeroDocumento'], parseador['Nombres'],
         parseador['PrimerApellido'], parseador['SegundoApellido'],
-        parseador['FechaNacimiento'], doc.pdf)
+        parseador['FechaNacimiento'], doc.pdf, doc.id)
   end
 end

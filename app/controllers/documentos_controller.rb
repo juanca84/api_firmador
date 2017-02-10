@@ -1,4 +1,8 @@
 class DocumentosController < ApplicationController
+  def index
+    render json: { mensaje: 'Servicio iniciado correctamente.' }
+  end
+
   # GET /documentos/1
   def show
     @documento = Documento.find(params[:id])

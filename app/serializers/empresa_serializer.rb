@@ -1,5 +1,5 @@
 class EmpresaSerializer < ActiveModel::Serializer
-  attributes :nit, :razon_social, :pdf
+  attributes :nit, :razon_social, :id_doc, :pdf
 
   def nit
     object.nit
@@ -11,5 +11,9 @@ class EmpresaSerializer < ActiveModel::Serializer
 
   def pdf
     object.pdf
+  end
+
+  def id_doc
+    object.id_doc
   end
 end

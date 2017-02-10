@@ -1,11 +1,12 @@
 class Empresa
   include ActiveModel::Model
-  attr_accessor :nit, :razon_social, :pdf
+  attr_accessor :nit, :razon_social, :pdf, :id_doc
 
-  def initialize(nit, razon_social, pdf)
+  def initialize(nit, razon_social, pdf, id_doc)
     @nit = nit
     @razon_social = razon_social
     @pdf = pdf
+    @id_doc = id_doc
   end
 
   def self.fetch(nit_razon_social)
@@ -33,7 +34,7 @@ class Empresa
       end
     return nil unless parseador.present?
     doc = Documento.crear(parseador)
-    new(parseador['Nit'], parseador['RazonSocial'], doc.pdf)
+    new(parseador['Nit'], parseador['RazonSocial'], doc.pdf, doc.id)
   rescue
     nil
   end

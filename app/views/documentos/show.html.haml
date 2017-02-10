@@ -1,29 +1,61 @@
-%h2 Certificado
-- if documento['NumeroDocumento'].present?
-  %h3
-    %strong Número Documento:
-    = documento['NumeroDocumento']
-  %h3
-    %strong Nombres:
-    = documento['Nombres']
-  %h3
-    %strong Primer Apellido:
-    = documento['PrimerApellido']
-  %h3
-    %strong Segundo Apellido:
-    = documento['SegundoApellido']
+%section
+  = wicked_pdf_image_tag 'images/rect-blue.png', class: 'rect'
+  .div
+    .col-3.container-logo
+      = wicked_pdf_image_tag 'images/escudobolivia.png', class: 'left-logo vertical-center'
+    .col-6.container-logo
+      = wicked_pdf_image_tag 'images/logoagetic.png', class: 'left-logo vertical-center __web-inspector-hide-shortcut___'
+  %div
+    %span#title Certificado AGETIC
+  %div
+    .col-3
+    .col-6
+      #description
+        - if documento['NumeroDocumento'].present?
+          %strong Número Documento:
+          = documento['NumeroDocumento']
+          %br
+          %strong Nombres:
+          = documento['Nombres']
+          %br
+          %strong Primer Apellido:
+          = documento['PrimerApellido']
+          %br
+          %strong Segundo Apellido:
+          = documento['SegundoApellido']
+          %br
+          %br
 
--if documento['Nit'].present?
-  %h3
-    %strong NIT:
-    = documento['Nit']
-  %h3
-    %strong Razón Social:
-    = documento['RazonSocial']
+        -if documento['Nit'].present?
+          %strong NIT:
+          = documento['Nit']
+          %br
+          %strong Razón Social:
+          = documento['RazonSocial']
+          %br
+          %br
+    .col-3
 
-- fecha_hora = DateTime.now
-%p fecha: #{ fecha_hora.strftime("%d/%m/%Y") }
-%p hora: #{ fecha_hora.strftime("%H:%M:%S") }
+  .signatures
+    .col-4.container-signature
+    .col-4.container-signature
+      %br
+      %br
+      %br
+      %br
+      %hr
+      %div= propietario["nombreComunSubject"]
+    .col-4.container-signature
 
-.square
-  = raw qr.as_html
+  .signatures
+    .col-3.container-signature
+    .col-3.container-signature
+      - fecha_hora = DateTime.now
+      #description
+        Fecha: #{ fecha_hora.strftime("%d/%m/%Y") }
+        %br
+        Hora: #{ fecha_hora.strftime("%H:%M:%S") }
+    .col-3.container-signature
+    .col-3.container-signature
+      = raw qr.as_html
+  = wicked_pdf_image_tag 'images/rect-blue.png', class: 'rect'
